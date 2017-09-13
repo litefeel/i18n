@@ -37,7 +37,7 @@ def readfile(filename, cols, kmap):
 def writefile(filename1, filename2, cols, kvmap):
     cols = encodes(cols, 'gbk')
     kvmap = encodemap(kvmap, 'gbk')
-    with open(filename1, 'rb') as f1, open(filename2, 'w') as f2:
+    with open(filename1, 'rb') as f1, open(filename2, 'wb') as f2:
         reader = csv.DictReader(f1)
         writer = csv.DictWriter(f2, fieldnames = reader.fieldnames)
         writer.writeheader()
@@ -46,6 +46,7 @@ def writefile(filename1, filename2, cols, kvmap):
                 key = row[col]
                 if key in kvmap:
                     row[col] = kvmap[key]
+            # print(row)
             writer.writerow(row)
 
 # filename1 = '../../csv/tawords.csv'
