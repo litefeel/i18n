@@ -72,51 +72,58 @@ def exportI18n(originPath, i18nPath):
     data = ET.tostring(xml, 'utf-8')
     writefile(xmlpath, xmldeclaration + data)
 
-def importI18ns(xmldir, exceldir):
-    makedirs(exceldir)
-    for root, dirs, files in os.walk(xmldir):
-        for f in files:
-            if f.endswith('.xml'):
-                xmlpath = os.path.join(root, f)
-                relpath = os.path.relpath(xmlpath, xmldir)
-                excelpath = os.path.join(exceldir, relpath[:-3] + 'xlsx')
-                xml2excel(xmlpath, excelpath)
+def po2map(po):
+    kvmap = {}
+    for entry in po:
+        kvmap[entry.msgid] = entry.msgstr
+    return kvmap
+
+def importI18ns(originDir, langDir, outputDir, cfg, adapter):
+    makedirs(langDir)
+
+    for lang in cfg.langs:
+        pofilename = os.path.join(langDir, lang + '.po')
+        po = loadpo(pofilename)
+        print(pofilename)
+        kvmap = po2map(po)
+
+        for filename, cols in cfg.csvmap.iteritems():
+            originPath = os.path.join(originDir, filename)
+            outputPath = os.path.join(outputDir, lang, filename)
+            makedirs2(outputPath)
+            adapter.writefile(originPath, outputPath, cols, kvmap)
+
+    
 
 def mergepo(po, kmap):
-    for i in xrange(1,len(po) + 1):
+    for i in xrange(0,len(po)):
         entry = po[i]
         if entry.msgid in kmap:
-            kmap[entry] = False
+            kmap[entry.msgid] = False
     for k, v in kmap.iteritems():
-        entry = polib.POEntry(
-            msgid=k,
-            msgstr=u'',
-            obsolete = False
-        )
-        po.append(entry)
+        if v:
+            entry = polib.POEntry(
+                msgid=k,
+                msgstr=u'',
+                obsolete = False
+            )
+            po.append(entry)
     # for key in kmap.iteritems():
     #     entry = po.find(key, include_obsolete_entries = True)
 
-def exportI18ns(originDir, i18nDir, cfgmap, adapter):
-    makedirs(i18nDir)
+def exportI18ns(originDir, langDir, cfg, adapter):
+    makedirs(langDir)
     kmap = {}
-    for filename, cols in cfgmap.iteritems():
+    for filename, cols in cfg.csvmap.iteritems():
         filename = os.path.join(originDir, filename)
         adapter.readfile(filename, cols, kmap)
 
-    pofilename = os.path.join(i18nDir, 'zh_TW.po')
-    po = loadpo(pofilename)
-    mergepo(po, kmap)
-    po.save(pofilename)
-
-    # for root, dirs, files in os.walk(originDir):
-    #     for f in files:
-    #         if f.endswith('.xlsx'):
-    #             originPath = os.path.join(root, f)
-    #             relpath = os.path.relpath(originPath, i18nDir)
-    #             i18nPath = os.path.join(xmldir, relpath)
-    #             exportI18n(originPath, i18nPath)
-
+    for lang in cfg.langs:
+        pofilename = os.path.join(langDir, lang + '.po')
+        po = loadpo(pofilename)
+        print(pofilename)
+        mergepo(po, kmap.copy())
+        po.save(pofilename)
 
 # -------------- main ----------------
 if __name__ == '__main__':
@@ -160,7 +167,9 @@ if __name__ == '__main__':
     # 
     # 
     pass
-cfgmap = readyaml('config.yml')
+cfg = Config()
+cfg.load('config.yml')
 
 import scripts.adapters.csvadapter as csvadapter
-exportI18ns('csv', 'languages', cfgmap, csvadapter)
+# exportI18ns('csv', 'languages', cfg, csvadapter)
+importI18ns('csv', 'languages', 'csv2', cfg, csvadapter)

@@ -1,5 +1,8 @@
 # YAML
 
-tawords.csv:
-  - words
-  - 英雄
+langs:
+  - zh_TW
+  - en_US
+
+csv:
+  tawords.csv: [words, 英雄]

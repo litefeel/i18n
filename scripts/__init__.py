@@ -1,3 +1,4 @@
 # -*- coding: utf-8 -*-
 # 
 from function import *
+from config import Config
