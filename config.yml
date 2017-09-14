@@ -4,5 +4,19 @@ langs:
   - zh_TW
   - en_US
 
-csv:
-  tawords.csv: [words, 英雄]
+# 语言包目录
+langsdir: languages
+
+# 输出目录
+outputdir: output
+
+
+# 表数据
+sheets:
+  csv:
+    extension: csv
+    tawords: [words, 英雄]
+  xml:
+    extension: xml
+    static_unlock: [des, wave_name, content]
+

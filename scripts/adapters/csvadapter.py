@@ -18,15 +18,14 @@ def encodemap(map, encoding):
     return map2
 
 
-def encodes(arr, encoding):
+def encodelist(arr, encoding):
     return [s.encode(encoding) for s in arr]
 
 def readfile(filename, cols, kmap):
-    # cols = encodes(cols, 'gbk')
     with open(filename, 'rb') as f:
         reader = csv.DictReader(f)
-        print(reader.fieldnames)
-        print(cols)
+        # print(reader.fieldnames)
+        # print(cols)
         for row in reader:
             row = decodemap(row, 'gbk')
             for col in cols:
@@ -35,7 +34,7 @@ def readfile(filename, cols, kmap):
 
 # wite file1 to file2
 def writefile(filename1, filename2, cols, kvmap):
-    cols = encodes(cols, 'gbk')
+    cols = encodelist(cols, 'gbk')
     kvmap = encodemap(kvmap, 'gbk')
     with open(filename1, 'rb') as f1, open(filename2, 'wb') as f2:
         reader = csv.DictReader(f1)
