@@ -21,6 +21,7 @@ def doimport(cfg, adaptermap):
 
         for sheet in cfg.sheets:
             _, ext = os.path.splitext(sheet.path)
+            ext = ext[1:]
             adapter = adaptermap[ext]
             originPath = sheet.path
             outputPath = os.path.join(cfg.outputdir, lang, sheet.path)

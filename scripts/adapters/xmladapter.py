@@ -2,6 +2,7 @@
 # 
 
 import xml.etree.ElementTree as ET
+from .. import isascii
 
 
 xmldeclaration = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
@@ -31,6 +32,36 @@ def writefile(filename1, filename2, cols, kvmap):
     with open(filename2, 'wb') as f:
         f.write(xmldeclaration + data)
 
+
+def checkcols(filename):
+    map = {}
+    cols = []
+    xml = ET.parse(filename)
+    root = xml.getroot()
+    n = len(root)
+    for node in root:
+        for col in node:
+            k, v = col.tag, col.text
+            if k not in map and not isascii(v):
+                map[k] = True
+                cols.append(k)
+    return cols
+    # for col in cols:
+    #     for colNode in root.iter(col):
+    #         kmap[colNode.text] = True
+
+    # with open(filename, 'rb') as f:
+    #     reader = csv.DictReader(f)
+    #     for row in reader:
+    #         for k, v in row.iteritems():
+    #             if k not in map:
+    #                 v = v.decode('gbk')
+    #                 if not isascii(v):
+    #                     map[k] = True
+    #                     cols.append(k.decode('gbk'))
+
+    # return cols
+
 # filename1 = '../../xml/static_unlock.xml'
 # filename2 = '../../xml/static_unlock1.xml'
 # cols = [u'des', u'wave_name', u'content']
@@ -42,6 +73,13 @@ def writefile(filename1, filename2, cols, kvmap):
 # kvmap = {}
 # kvmap[ur'镜像试练'] = ur'this镜像试练xxxxxxx'
 # writefile(filename1, filename2, cols, kvmap)
+# 
+# cols = checkcols(filename1)
+# print('-------- checkcols -------')
+# for c in cols:
+#     print(c)
+# 
+# 
 # with open(filename, 'rb') as f:
 #     reader = csv.DictReader(f)
 #     print(reader.fieldnames)

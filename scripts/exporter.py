@@ -31,6 +31,7 @@ def doexport(cfg, adaptermap):
     for sheet in cfg.sheets:
         # print(sheet.path)
         _, ext = os.path.splitext(sheet.path)
+        ext = ext[1:]
         adapter = adaptermap[ext]
         filename = sheet.path
         adapter.readfile(filename, sheet.colNames, kmap)

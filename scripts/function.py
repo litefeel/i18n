@@ -4,6 +4,11 @@
 # 
 import os, os.path
 
+def isascii(s):
+    for c in s:
+        if ord(c) >= 128:
+            return False
+    return True
 
 def isi18n(cell, i18nKey):
     comment = cell.comment
@@ -70,3 +75,12 @@ def writefile(filename, data, mode = 'w'):
 def removefile(filename):
     if os.path.isfile(filename):
         os.remove(filename)
+
+def strsplit(s, sep):
+    arr = s.split(sep)
+    arr2 = []
+    for x in arr:
+        x = x.strip()
+        if len(x) > 0:
+            arr2.append(x)
+    return arr2

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # 
 import csv
-import csv, sys
+from .. import isascii
+
 
 def decodemap(map, encoding):
     map2 = {}
@@ -48,6 +49,21 @@ def writefile(filename1, filename2, cols, kvmap):
             # print(row)
             writer.writerow(row)
 
+def checkcols(filename):
+    map = {}
+    cols = []
+    with open(filename, 'rb') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            for k, v in row.iteritems():
+                if k not in map:
+                    v = v.decode('gbk')
+                    if not isascii(v):
+                        map[k] = True
+                        cols.append(k.decode('gbk'))
+
+    return cols
+
 # filename1 = '../../csv/tawords.csv'
 # filename2 = '../../csv/tawords1.csv'
 # cols = [ur'英雄']
@@ -59,6 +75,12 @@ def writefile(filename1, filename2, cols, kvmap):
 # kvmap = {}
 # kvmap[ur'克洛斯'] = ur'的发顺丰的'
 # writefile(filename1, filename2, cols, kvmap)
+# 
+# cols = checkcols(filename1)
+# print('-------- checkcols -------')
+# for c in cols:
+#     print(c)
+# 
 # with open(filename, 'rb') as f:
 #     reader = csv.DictReader(f)
 #     print(reader.fieldnames)

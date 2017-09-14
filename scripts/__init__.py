@@ -4,3 +4,4 @@ from function import *
 from config import Config
 import importer
 import exporter
+import checker
