@@ -3,6 +3,7 @@
 # https://openpyxl.readthedocs.io/en/default/
 # 
 import os, os.path
+import codecs
 
 def isascii(s):
     for c in s:
@@ -34,9 +35,13 @@ def makedirs(path):
 def makedirs2(filename):
     makedirs(os.path.dirname(filename))
 
-def readfile(filename):
-    with open(filename, 'r') as f:
-        return f.read()
+
+def readfile(filename, mode = 'r', checkbom = False):
+    with open(filename, mode) as f:
+        data = f.read()
+        if checkbom and data[:3] == codecs.BOM_UTF8:
+            data = data[3:]
+        return data
 
 def readyaml(filename):
     # pip install pyyaml
