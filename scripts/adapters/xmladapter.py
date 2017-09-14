@@ -14,7 +14,8 @@ def readfile(filename, cols, kmap):
     root = xml.getroot()
     for col in cols:
         for colNode in root.iter(col):
-            kmap[colNode.text] = True
+            if colNode.text:
+                kmap[colNode.text] = True
             
 # wite file1 to file2
 def writefile(filename1, filename2, cols, kvmap):
@@ -42,7 +43,7 @@ def checkcols(filename):
     for node in root:
         for col in node:
             k, v = col.tag, col.text
-            if v is not None and len(v) > 0:
+            if v:
                 if k not in map and not isascii(v):
                     map[k] = True
                     cols.append(k)
