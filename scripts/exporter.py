@@ -11,6 +11,9 @@ def mergepo(po, kmap):
         entry = po[i]
         if entry.msgid in kmap:
             kmap[entry.msgid] = False
+            entry.obsolete = False
+        else:
+            entry.obsolete = True
     for k, v in kmap.iteritems():
         if v:
             entry = polib.POEntry(
