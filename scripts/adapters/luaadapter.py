@@ -40,7 +40,6 @@ def writefile(filename1, filename2, cols, kvmap):
             if key in kvmap:
                 key = kvmap[key]
             line = line[:mo.start(2)] + key + line[mo.end(2):]
-            print line
         outlines.append(line)
     data = '\n'.join(outlines)
     # print(data)
