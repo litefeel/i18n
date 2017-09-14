@@ -30,7 +30,9 @@ def readfile(filename, cols, kmap):
         for row in reader:
             row = decodemap(row, 'gbk')
             for col in cols:
-                kmap[row[col]] = True
+                s = row[col]
+                if s:
+                    kmap[s] = True
             # print(row['first_name'], row['last_name'])
 
 # wite file1 to file2
