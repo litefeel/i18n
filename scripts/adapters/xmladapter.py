@@ -42,9 +42,10 @@ def checkcols(filename):
     for node in root:
         for col in node:
             k, v = col.tag, col.text
-            if k not in map and not isascii(v):
-                map[k] = True
-                cols.append(k)
+            if v is not None and len(v) > 0:
+                if k not in map and not isascii(v):
+                    map[k] = True
+                    cols.append(k)
     return cols
     # for col in cols:
     #     for colNode in root.iter(col):
