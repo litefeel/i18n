@@ -3,21 +3,12 @@
 # https://openpyxl.readthedocs.io/en/default/
 # 
 import os, os.path
-from .function import *
-
-
-
-def po2map(po):
-    kvmap = {}
-    for entry in po:
-        kvmap[entry.msgid] = entry.msgstr
-    return kvmap
+from .function import makedirs2
+from .adapters.translation import po
 
 def doimport(cfg, adaptermap):
     for lang in cfg.langs:
-        pofilename = os.path.join(cfg.langsdir, lang + '.po')
-        po = loadpo(pofilename)
-        kvmap = po2map(po)
+        kvmap = po.read(cfg.langsdir, lang)
 
         for sheet in cfg.sheets:
             _, ext = os.path.splitext(sheet.path)
