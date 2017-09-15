@@ -3,7 +3,7 @@
 # https://openpyxl.readthedocs.io/en/default/
 # 
 import os, os.path
-from function import *
+from .function import *
 
 
 

@@ -4,7 +4,7 @@
 # 
 import os, os.path
 import polib
-from function import *
+from .function import *
 
 def mergepo(po, kmap):
     for i in xrange(0,len(po)):

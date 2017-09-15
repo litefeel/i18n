@@ -4,7 +4,7 @@
 # 
 import os, os.path
 import re
-from function import readyaml
+from .function import readyaml
 
 
 class Sheet:

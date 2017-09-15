@@ -4,7 +4,7 @@
 # 
 import os, os.path
 import polib
-from function import *
+from .function import *
 
 
 def docheck(paths, exts, output, adaptermap):
