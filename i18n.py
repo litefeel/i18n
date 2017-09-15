@@ -56,7 +56,7 @@ if __name__ == '__main__':
         # print(cfg.langs)
         # print(cfg.langsdir)
         # print(cfg.outputdir)
-        print(cfg.sheets)
+        # print(cfg.sheets)
 
         if args.method in ('i', 'import'):
             importer.doimport(cfg, adaptermap)
