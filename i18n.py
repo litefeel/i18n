@@ -5,11 +5,12 @@
 # require:
 # pip install pyyaml
 # pip install polib
+# pip install openpyxl
 # 
 import argparse
-from scripts.adapters import csvadapter
-from scripts.adapters import xmladapter
-from scripts.adapters import luaadapter
+from scripts.adapters.dataset import csvadapter
+from scripts.adapters.dataset import xmladapter
+from scripts.adapters.dataset import luaadapter
 from scripts import *
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # 
 import csv
-from .. import isascii
+from ... import isascii
 
 def readfile(filename, cols, kmap):
     with open(filename, 'r', encoding = 'gbk') as f:

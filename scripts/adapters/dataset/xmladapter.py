@@ -2,8 +2,8 @@
 # 
 
 import xml.etree.ElementTree as ET
-from .. import isascii
-from .. import writefile as wf
+from ... import isascii
+from ... import writefile as wf
 
 
 xmldeclaration = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
