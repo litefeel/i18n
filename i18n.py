@@ -11,6 +11,7 @@ import argparse
 from scripts.adapters.dataset import csvadapter
 from scripts.adapters.dataset import xmladapter
 from scripts.adapters.dataset import luaadapter
+from scripts.adapters.dataset import exceladapter
 from scripts import *
 
 
@@ -44,6 +45,7 @@ if __name__ == '__main__':
         "xml": xmladapter,
         "csv": csvadapter,
         "lua": luaadapter,
+        "xlsx": exceladapter,
     }
 
     if args.method == 'check':
