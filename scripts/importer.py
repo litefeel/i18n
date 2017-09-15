@@ -4,11 +4,12 @@
 # 
 import os, os.path
 from .function import makedirs2
-from .adapters.translation import po
+from .adapters.translation import gettranslation
 
 def doimport(cfg, adaptermap):
+    translation = gettranslation(cfg.translation)
     for lang in cfg.langs:
-        kvmap = po.read(cfg.langsdir, lang)
+        kvmap = translation.read(cfg.langsdir, lang)
 
         for sheet in cfg.sheets:
             _, ext = os.path.splitext(sheet.path)

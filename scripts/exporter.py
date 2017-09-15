@@ -5,11 +5,12 @@
 import os, os.path
 import polib
 from .function import *
-from .adapters.translation import po
+from .adapters.translation import gettranslation
 
 def doexport(cfg, adaptermap):
     makedirs(cfg.langsdir)
     kmap = {}
+    
     for sheet in cfg.sheets:
         # print(sheet.path)
         _, ext = os.path.splitext(sheet.path)
@@ -18,6 +19,7 @@ def doexport(cfg, adaptermap):
         filename = sheet.path
         adapter.readfile(filename, sheet.colNames, kmap)
 
+    translation = gettranslation(cfg.translation)
     for lang in cfg.langs:
-        po.save(cfg.langsdir, lang, kmap.copy())
+        translation.save(cfg.langsdir, lang, kmap.copy())
         

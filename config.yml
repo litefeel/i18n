@@ -7,6 +7,11 @@ langs:
 # 语言包目录
 langsdir: languages
 
+# 语言包类型
+# po    导出为.po文件
+# excel 导出为.xlsx文件
+translation: excel
+
 # 输出目录
 outputdir: output
 

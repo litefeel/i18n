@@ -52,12 +52,13 @@ def parseSheets(map, sheets = None, prefix = '', suffix = ''):
     return sheets
 
 class Config:
-    __slots__ = ['langs', 'langsdir', 'outputdir', 'sheets']
+    __slots__ = ['langs', 'langsdir', 'outputdir', 'sheets', 'translation']
     def __init__(self):
         '''
         <str> langs
         string langsdir
         string outputdir
+        string translation
         <{filename,colNames}> sheets
         '''
         pass
@@ -65,8 +66,9 @@ class Config:
     def load(self, filename):
         data = readyaml(filename)
         # print(data)
-        self.langs     = data['langs']
-        self.langsdir  = data['langsdir']
-        self.outputdir = data['outputdir']
-        self.sheets    = parseSheets(data['sheets'])
+        self.langs       = data['langs']
+        self.langsdir    = data['langsdir']
+        self.outputdir   = data['outputdir']
+        self.translation = data['translation']
+        self.sheets      = parseSheets(data['sheets'])
 
