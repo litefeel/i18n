@@ -22,14 +22,14 @@ def read(langsdir, lang):
     return po2map(po)
 
 def mergepo(po, kmap):
-    for i in xrange(0,len(po)):
+    for i in range(0,len(po)):
         entry = po[i]
         if entry.msgid in kmap:
             kmap[entry.msgid] = False
             entry.obsolete = False
         else:
             entry.obsolete = True
-    for k, v in kmap.iteritems():
+    for k, v in kmap.items():
         if v:
             entry = polib.POEntry(
                 msgid=k,
@@ -37,7 +37,7 @@ def mergepo(po, kmap):
                 obsolete = False
             )
             po.append(entry)
-    # for key in kmap.iteritems():
+    # for key in kmap.items():
     #     entry = po.find(key, include_obsolete_entries = True)
 
 def save(langsdir, lang, kmap):

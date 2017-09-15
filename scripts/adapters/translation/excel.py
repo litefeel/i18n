@@ -19,7 +19,7 @@ def read(langsdir, lang):
     ws = wb.active
     col = ws.max_column
     max_row = ws.max_row
-    for row in xrange(1, max_row + 1):
+    for row in range(1, max_row + 1):
         k = ws.cell(row = row, column = 1).value
         v = ws.cell(row = row, column = 2).value or ''
         if k:
@@ -30,18 +30,18 @@ def read(langsdir, lang):
 def save(langsdir, lang, kmap):
     filename = os.path.join(langsdir, lang + '.xlsx')
     kvmap = {}
-    for k, v in kmap.iteritems():
+    for k, v in kmap.items():
         kvmap[k] = ''
     oldmap = read(langsdir, lang)
     if oldmap:
-        for k, v in oldmap.iteritems():
+        for k, v in oldmap.items():
             if k in kvmap:
                 kvmap[k] = v
     wb = Workbook()
     ws = wb.active
 
     row = 1
-    for k, v in kvmap.iteritems():
+    for k, v in kvmap.items():
         ws.cell(row = row, column = 1, value = k)
         ws.cell(row = row, column = 2, value = v)
         row += 1

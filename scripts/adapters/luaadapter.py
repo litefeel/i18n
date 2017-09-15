@@ -16,7 +16,7 @@ pattern = re.compile(pattern)
 # read file
 def readfile(filename, cols, kmap):
     # print(cols)
-    data = rf(filename, checkbom = True).decode("utf-8")
+    data = rf(filename)
     # print(data)
     lines = data.splitlines()
     for line in lines:
@@ -29,7 +29,7 @@ def readfile(filename, cols, kmap):
             
 # wite file1 to file2
 def writefile(filename1, filename2, cols, kvmap):
-    data = rf(filename1, checkbom = True).decode("utf-8")
+    data = rf(filename1)
     # print(data)
     lines = data.splitlines()
     outlines = []
@@ -43,7 +43,7 @@ def writefile(filename1, filename2, cols, kvmap):
         outlines.append(line)
     data = '\n'.join(outlines)
     # print(data)
-    wf(filename2, data.encode('utf-8'))
+    wf(filename2, data)
 
 
 def checkcols(filename):

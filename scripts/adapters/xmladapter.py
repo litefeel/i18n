@@ -3,6 +3,7 @@
 
 import xml.etree.ElementTree as ET
 from .. import isascii
+from .. import writefile as wf
 
 
 xmldeclaration = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
@@ -26,12 +27,11 @@ def writefile(filename1, filename2, cols, kvmap):
             key = colNode.text
             if key in kvmap:
                 colNode.text = kvmap[key]
-    
+
     # xml.write(filename2)
     root.set('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
-    data = ET.tostring(root, 'utf-8')
-    with open(filename2, 'wb') as f:
-        f.write(xmldeclaration + data)
+    data = ET.tostring(root, 'unicode')
+    wf(filename2, xmldeclaration + data)
 
 
 def checkcols(filename):
@@ -55,7 +55,7 @@ def checkcols(filename):
     # with open(filename, 'rb') as f:
     #     reader = csv.DictReader(f)
     #     for row in reader:
-    #         for k, v in row.iteritems():
+    #         for k, v in row.items():
     #             if k not in map:
     #                 v = v.decode('gbk')
     #                 if not isascii(v):
@@ -70,7 +70,7 @@ def checkcols(filename):
 # kmap = {}
 # # readfile(filename1, cols, kmap)
 # # print(kmap)
-# # for k, v in kmap.iteritems():
+# # for k, v in kmap.items():
 # #     print(k)
 # kvmap = {}
 # kvmap[ur'镜像试练'] = ur'this镜像试练xxxxxxx'

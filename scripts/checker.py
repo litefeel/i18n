@@ -39,5 +39,5 @@ def docheck(paths, exts, output, adaptermap):
 
     s = ''.join(arr)
     print(s)
-    writefile(output, s.encode('utf-8'))
+    writefile(output, s)
     

@@ -36,12 +36,9 @@ def makedirs2(filename):
     makedirs(os.path.dirname(filename))
 
 
-def readfile(filename, mode = 'r', checkbom = False):
-    with open(filename, mode) as f:
-        data = f.read()
-        if checkbom and data[:3] == codecs.BOM_UTF8:
-            data = data[3:]
-        return data
+def readfile(filename, mode = 'r', encoding = 'utf-8-sig'):
+    with open(filename, mode, encoding = encoding) as f:
+        return f.read()
 
 def readyaml(filename):
     # pip install pyyaml
@@ -69,11 +66,11 @@ def loadpo(filename):
     return polib.pofile(filename, encoding='utf-8')
 
 
-def writefile(filename, data, mode = 'w'):
+def writefile(filename, data, mode = 'w', encoding = 'utf-8'):
     dir = os.path.dirname(filename)
     if len(dir) > 0 and not os.path.exists(dir):
         os.makedirs(dir)
-    with open(filename, mode) as f:
+    with open(filename, mode, encoding = encoding) as f:
         f.write(data)
         f.close()
 

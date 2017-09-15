@@ -42,7 +42,7 @@ def parseSheets(map, sheets = None, prefix = '', suffix = ''):
     sheets = [] if sheets is None else sheets
     if 'extension' in map:
         suffix = map['extension']
-    for k, v in map.iteritems():
+    for k, v in map.items():
         if k != 'extension':
             if isinstance(v, (list, tuple)) or v is None:
                 tryAppend(sheets, k, prefix, suffix, v)
