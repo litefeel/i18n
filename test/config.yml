@@ -18,10 +18,5 @@ outputdir: output
 
 # 表数据
 sheets:
-  csv:
-    extension: csv
-    tawords: [words, 英雄]
-  xml:
-    extension: xml
-    static_unlock: [des, wave_name, content]
+  datasets/excel/attributeData.xlsx: [name]
 
