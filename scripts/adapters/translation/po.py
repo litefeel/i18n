@@ -33,7 +33,7 @@ def mergepo(po, kmap):
         if v:
             entry = polib.POEntry(
                 msgid=k,
-                msgstr=u'',
+                msgstr='',
                 obsolete = False
             )
             po.append(entry)
