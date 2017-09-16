@@ -1,0 +1,25 @@
+language: python
+python:
+  - 3.2
+  - 3.3
+  - 3.4
+  - 3.5
+  - 3.6
+  - 3.7-dev # 3.7 development branch
+  - nightly
+
+matrix:
+  allow_failures:
+  - python: 3.2  # pyyaml have syntax error on python 3.2
+
+# command to install dependencies
+install:
+  - pip install pyyaml
+  - pip install polib
+  - pip install openpyxl
+
+# command to run tests
+script:
+  - python i18n.py check --checkdirs test/datasets --checkexts csv,xml,xlsx
+  - python i18n.py e -c test/config.yml
+  - python i18n.py i -c test/config.yml
