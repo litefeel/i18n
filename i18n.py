@@ -40,6 +40,8 @@ if __name__ == '__main__':
         help='i import: import\ne export: export\ncheck: check i18n with --checkdirs')
     parser.add_argument('-c', '--config', default = 'config.yml',
         help='config file, default: config.yml')
+    parser.add_argument('-r', '--root',
+        help='override rootdir of config')
     parser.add_argument('--checkdirs',
         help='the path for check i18n, path1,path2,path3')
     parser.add_argument('--checkexts', default = 'xml,csv',
@@ -63,7 +65,7 @@ if __name__ == '__main__':
         docheck(args.checkdirs, args.checkexts, args.checkoutput, adaptermap)
     else:
         cfg = Config()
-        cfg.load(args.config)
+        cfg.load(args.config, args.root)
         # print(cfg.langs)
         # print(cfg.langsdir)
         # print(cfg.outputdir)

@@ -4,6 +4,13 @@ langs:
   - zh_TW
   - en_US
 
+# 以下所有目录都相对于该根目录
+# (留空): 命令行的当前目录
+# relpath: 相对于config.yml所在的目录
+# abspath: 绝对目录
+# . : config.yml 所在的目录
+rootdir: .
+
 # 语言包目录
 langsdir: languages
 
