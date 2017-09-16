@@ -1,3 +1,4 @@
+#!python3
 # -*- coding: utf-8 -*-
 # requed:
 # https://openpyxl.readthedocs.io/en/default/
@@ -7,6 +8,13 @@
 # pip install polib
 # pip install openpyxl
 # 
+import sys
+if sys.version_info < (3, 0):
+    print >>sys.stderr, 'current python version:%s' % sys.version
+    print >>sys.stderr, 'please use python 3'
+    exit(1)
+
+
 import argparse
 from scripts.adapters.dataset import csvadapter
 from scripts.adapters.dataset import xmladapter
