@@ -43,7 +43,7 @@ def readfile(filename, mode = 'r', encoding = 'utf-8-sig'):
 def readyaml(filename):
     # pip install pyyaml
     import yaml
-    data = readfile('config.yml')
+    data = readfile(filename)
     return yaml.load(data)
 
 def loadpo(filename):
