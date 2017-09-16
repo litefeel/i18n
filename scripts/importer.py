@@ -15,7 +15,7 @@ def doimport(cfg, adaptermap):
             _, ext = os.path.splitext(sheet.path)
             ext = ext[1:]
             adapter = adaptermap[ext]
-            originPath = sheet.path
+            originPath = os.path.join(cfg.rootdir, sheet.path)
             outputPath = os.path.join(cfg.outputdir, lang, sheet.path)
             makedirs2(outputPath)
             adapter.writefile(originPath, outputPath, sheet.colNames, kvmap)

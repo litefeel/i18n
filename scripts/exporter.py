@@ -16,7 +16,7 @@ def doexport(cfg, adaptermap):
         _, ext = os.path.splitext(sheet.path)
         ext = ext[1:]
         adapter = adaptermap[ext]
-        filename = sheet.path
+        filename = os.path.join(cfg.rootdir, sheet.path)
         adapter.readfile(filename, sheet.colNames, kmap)
 
     translation = gettranslation(cfg.translation)
