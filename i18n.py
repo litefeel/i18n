@@ -14,6 +14,9 @@ if sys.version_info < (3, 0):
     print >>sys.stderr, 'please use python 3'
     exit(1)
 
+from scripts import correctstdout
+correctstdout.correct_stdout()
+correctstdout.correct_stderr()
 
 import argparse
 from scripts.adapters.dataset import csvadapter
