@@ -14,9 +14,7 @@ matrix:
 
 # command to install dependencies
 install:
-  - pip install pyyaml
-  - pip install polib
-  - pip install openpyxl
+  - pip install -r requirements.txt
 
 # command to run tests
 script:
