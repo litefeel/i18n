@@ -23,7 +23,13 @@ translation: excel
 outputdir: output
 
 
-# 表数据
+# 数据表
 sheets:
+  # 数值表格式
+  # <filename>:[fieldNames]
+  # 
+  datasets/lua/*.lua:
+  datasets/csv/tawords.csv: [words, 英雄]
   datasets/excel/attributeData.xlsx: [name]
+  datasets/xml/static_act_consortia_task.xml: [des]
 
