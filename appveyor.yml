@@ -33,9 +33,9 @@ test_script:
   # Note that you must use the environment variable %PYTHON% to refer to
   # the interpreter you're using - Appveyor does not do anything special
   # to put the Python version you want to use on PATH.
-  - "%PYTHON%\\python.exe i18n.py check --checkdirs test/datasets --checkexts csv,xml,xlsx"
-  - "%PYTHON%\\python.exe i18n.py e -c test/config.yml"
-  - "%PYTHON%\\python.exe i18n.py i -c test/config.yml"
+  - "%PYTHON%\\python.exe i18n.py check test/datasets --exts csv,xml,xlsx"
+  - "%PYTHON%\\python.exe i18n.py export -c test/config.yml"
+  - "%PYTHON%\\python.exe i18n.py import -c test/config.yml"
 
 # after_test:
 #   # This step builds your wheels.
