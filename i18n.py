@@ -26,6 +26,9 @@ from scripts.adapters.dataset import luaadapter
 from scripts.adapters.dataset import exceladapter
 from scripts import *
 
+# version number
+VERSION = '1.0'
+
 
 def docheck(dirs, exts, output, adaptermap):
     dirs = strsplit(dirs, sep = ',')
@@ -47,6 +50,9 @@ if __name__ == '__main__':
         description=textwrap.dedent("""
             export translation and import it.
             """))
+
+    parser.add_argument('-v', '--version', action='version',
+        version='%(prog)s version ' + VERSION)
     
     subparsers = parser.add_subparsers(title='subcommands',
         dest='subcommand', prog=PROG)
