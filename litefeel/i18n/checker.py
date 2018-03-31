@@ -22,6 +22,7 @@ def docheck(paths, exts, output, adaptermap):
                     filename = os.path.join(root, f)
                     filename = filename.replace('\\', '/')
                     map[filename] = True
+                    print("checking %s" % filename)
                     list.append({'f': filename, 'cols': adapter.checkcols(filename)})
 
     list.sort(key = lambda x: x['f'])
