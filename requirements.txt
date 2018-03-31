@@ -1,3 +1,4 @@
+litefeel-pycommon
 openpyxl
 polib
 PyYAML
